@@ -23,7 +23,7 @@ class TasksController extends Controller
         $task = new Task();
         $task->description = $request->description;
         $task->user_id = auth()->user()->id;
-        $task.save();
+        $task->save();
         return redirect('/dashboard');
     }
     
