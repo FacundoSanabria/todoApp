@@ -16,7 +16,11 @@
                     @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
-                    <textarea name="status_id">status_id</textarea>
+                    <select class="selector" name="status_id">
+                    @foreach($statuses as $status) 
+                        <option value={{$status->status_id}}>{{$status->name}}</option>
+                    @endforeach
+                    </select>  
                 </div>
 
                 <div class="form-group">

@@ -23,17 +23,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach(auth()->user()->tasks as $task)
+                    @foreach($tasks as $task)
                         <tr class="border-b hover:bg-orange-100">
                             <td class="p-3 px-5">
-                                {{$task->status_id}}
+                                <div class="status">
+                                    {{$task->name}}
+                                </div>
                             </td>
                             <td class="p-3 px-5">
                                 {{$task->description}}
                             </td>
                             <td class="p-3 px-5">    
-                                <a href="/task/{{$task->id}}" name="edit" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                                <form action="/task/{{$task->id}}" class="inline-block">
+                                <a href="/task/{{$task->task_id}}" name="edit" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Edit</a>
+                                <form action="/task/{{$task->task_id}}" class="inline-block">
                                     <button type="submit" name="delete" formmethod="POST" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete</button>
                                     {{ csrf_field() }}
                                 </form>

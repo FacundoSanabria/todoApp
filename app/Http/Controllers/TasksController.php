@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Status;
+use Illuminate\Support\Facades\DB;
+
 
 class TasksController extends Controller
 {
     public function index(){
-        $tasks = auth()->user()->tasks();
+        $tasks = DB::table('tasks')
+                ->join('statuses', 'tasks.status_id', '=', 'statuses.status_id')    
+                ->where('tasks.user_id','=', auth()->user()->id)
+                ->get();
+        error_log($tasks);
         return view('dashboard', compact('tasks'));
     }
 
     public function add(){
-        return view('add');
+        $statuses = Status::all();
+        return view('add', compact('statuses'));
     }
 
     public function create(Request $request){
