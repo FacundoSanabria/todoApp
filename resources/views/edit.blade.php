@@ -16,6 +16,7 @@
                     @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
+                    <textarea name="status_id">staus_id</textarea>
                 </div>
 
                 <div class="form-group">

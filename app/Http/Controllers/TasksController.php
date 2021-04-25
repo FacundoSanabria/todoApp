@@ -18,11 +18,13 @@ class TasksController extends Controller
 
     public function create(Request $request){
         $this->validate($request, [
-            'description' => 'required'
+            'description' => 'required',
+            'status_id' => 'required'
         ]);
         $task = new Task();
         $task->description = $request->description;
         $task->user_id = auth()->user()->id;
+        $task->status_id = $request->status_id;
         $task->save();
         return redirect('/dashboard');
     }
@@ -43,11 +45,9 @@ class TasksController extends Controller
     	}
     	else
     	{
-            $this->validate($request, [
-                'description' => 'required'
-            ]);
     		$task->description = $request->description;
-	    	$task->save();
+	    	$task->status_id = $request->status_id;
+            $task->save();
 	    	return redirect('/dashboard'); 
     	}    	
     }
