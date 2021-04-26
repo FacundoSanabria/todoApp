@@ -16,7 +16,15 @@
                     @if ($errors->has('description'))
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
-                    <textarea name="status_id">{{$task->status_id}}</textarea>
+                    <select class="selector" name="status_id">
+                    @foreach($statuses as $status) 
+                        @if($status->status_id == $task->status_id)
+                            <option value={{$status->status_id}} selected>{{$status->name}}</option>
+                        @else
+                            <option value={{$status->status_id}}>{{$status->name}}</option>
+                        @endif
+                    @endforeach
+                    </select>  
                 </div>
 
                 <div class="form-group">

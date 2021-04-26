@@ -39,7 +39,8 @@ class TasksController extends Controller
     
     public function edit(Task $task){
         if (auth()->user()->id == $task->user_id){            
-            return view('edit', compact('task'));
+            $statuses = Status::all();
+            return view('edit', compact('task', 'statuses'));
         }           
         else {
             return redirect('/dashboard');
